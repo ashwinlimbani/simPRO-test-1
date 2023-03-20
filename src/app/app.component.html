@@ -1,4 +1,5 @@
 <div class="quote-container">
+  <div class="quote" *ngIf="loading">Loading...</div>
   <ng-container *ngFor="let item of quotes$ |async">
     <div class="quote">{{item.quote}}</div>
   </ng-container>
