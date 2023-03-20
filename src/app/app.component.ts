@@ -10,6 +10,7 @@ import { QuotesService } from './service/quotes.service';
 })
 export class AppComponent {
   loading: boolean = false;
+  failTLoad: boolean = false;
   quotes$: Observable<Quote[]>;
   constructor(private quotesService: QuotesService) {}
 
@@ -19,9 +20,11 @@ export class AppComponent {
 
   loadQuotes() {
     this.loading = true;
+    this.failTLoad = false;
     this.quotes$ = this.quotesService.getQuotes().pipe(
       catchError((err) => {
         console.error(err);
+        this.failTLoad = true;
         return throwError(() => err);
       }),
       finalize(() => {
