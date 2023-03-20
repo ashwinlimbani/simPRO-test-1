@@ -1,6 +1,6 @@
 <div class="quote-container">
   <div class="quote" *ngIf="loading">Loading...</div>
-  <div class="quote" *ngIf="!loading && failTLoad">Failed to load quotes.</div>
+  <div class="quote quote-error" *ngIf="!loading && failTLoad">Failed to load quotes.</div>
   <ng-container *ngFor="let item of quotes$ |async">
     <div class="quote">{{item.quote}}</div>
   </ng-container>
